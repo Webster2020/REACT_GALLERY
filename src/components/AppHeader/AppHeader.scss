@@ -1,0 +1,22 @@
+@import '../../styles/settings.scss';
+
+.appHeaderContainer {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  min-height: 200px;
+  text-align: center; 
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid black; 
+}
+
+.appHeaderImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  opacity: 0.5;
+}

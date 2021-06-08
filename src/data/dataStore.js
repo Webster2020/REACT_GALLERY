@@ -1,54 +1,12 @@
-export const exampleData = {
-  title: 'ReactApp',
-  currentYear: 2021,
-  tasks: [
-    {
-      key: 0,
-      title: 'styles',
-    },
-    {
-      key: 1,
-      title: 'structure',
-    },
-    {
-      key: 2,
-      title: 'idea',
-    },
-  ],
-  secreteData: [
-    {
-      name: 'John',
-      idNumber: 123456,
-      email: 'john@gmail.com',
-      family: [
-        {
-          father: {
-            name: 'Ben',
-            age: 60,
-          },
-          mother: {
-            name: 'Kate',
-            age: 58,
-          },
-        },
-      ],
-    },
-    {
-      name: 'Tom',
-      idNumber: 493835,
-      email: 'tom@gmail.com',
-      family: [
-        {
-          father: {
-            name: 'Greg',
-            age: 71,
-          },
-          mother: {
-            name: 'Anna',
-            age: 65,
-          },
-        },
-      ],
-    },
-  ],
+export const dataStore = {
+  app: {
+    version: '',
+  },
+  appHeader: {
+    bcgImage: 'https://images.pexels.com/photos/2146386/pexels-photo-2146386.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
+  },
+  title: {
+    titleText: 'React GALLERY app',
+    subtitleText: 'COLLECT YOUR MEMORIES IN ONE PLACE',
+  },
 };

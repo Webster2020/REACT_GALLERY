@@ -1,16 +1,21 @@
 import React from 'react';
 import styles from './App.scss';
-import {exampleData} from '../../data/dataStore.js';
+import {dataStore} from '../../data/dataStore.js';
+import AppHeader from '../AppHeader/AppHeader.js';
+import Gallery from '../Gallery/Gallery.js';
 
 class App extends React.Component {
   render() {
     return (
-      <div className = {styles.title}>
-        <h1>My first React app</h1>
-        <h3>{exampleData.title}</h3>
-        <h4>{exampleData.currentYear}</h4>
+      <div className={styles.appContainer}>
+        <AppHeader 
+          title={dataStore.title.titleText}
+          subtitle={dataStore.title.subtitleText}
+          background={dataStore.appHeader.bcgImage}
+        />
+        <Gallery />
       </div>
-    );
+    );  
   }
 }
 

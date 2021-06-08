@@ -1,0 +1,42 @@
+@import '../../styles/settings.scss';
+
+.cardListElement {
+  margin: 20px;
+  display: inline-block;
+  list-style: none;
+}
+
+.cardContainer {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  padding: 10px 0;
+  height: 300px;
+  width: 200px;
+  text-align: center; 
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: dodgerblue;
+  box-shadow: 0 8px 6px -6px black;
+  border: 2px solid dodgerblue; 
+}
+
+.cardImgWrapper {
+  display: block;
+  position: relative;
+  height: 220px;
+  margin: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 3px solid dodgerblue; 
+}
+
+.cardImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  opacity: 0.9;
+}
