@@ -11,14 +11,18 @@
   position: relative;
   margin: 0 auto;
   padding: 10px 0;
-  height: 300px;
+  height: 350px;
   width: 200px;
   text-align: center; 
   border-radius: 10px;
   overflow: hidden;
   background-color: dodgerblue;
   box-shadow: 0 8px 6px -6px black;
-  border: 2px solid dodgerblue; 
+  border: 2px solid dodgerblue;
+  &:hover {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;;
+    transition: 0.5s;
+  } 
 }
 
 .cardImgWrapper {

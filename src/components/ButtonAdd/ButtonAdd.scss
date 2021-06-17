@@ -1,0 +1,22 @@
+@import '../../styles/settings.scss';
+
+.buttonContainer {
+  display: inline-block;
+  padding: 5px;
+  text-align: center;
+  border: 2px dotted red;
+}
+
+.buttonApply {
+  padding: 5px;
+  font-size: 10px;
+  background-color: gold;
+  border: 2px solid orange;
+  border-radius: 5px;
+  transition: 0.5s;
+  &:hover {
+    opacity: 0.7;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+}

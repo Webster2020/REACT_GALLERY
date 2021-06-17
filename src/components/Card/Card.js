@@ -1,17 +1,50 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './Card.scss';
+import Destructor from '../Destructor/Destructor';
 
 class Card extends React.Component {
+  
+  
+  static propTypes = {
+    content: PropTypes.any,
+    allCards: PropTypes.array,
+    action: PropTypes.func,
+  }
+  
+  handleRemove() {
+    console.log('>> Run /handleRemove/ from /Card/');
+    console.log('this.props.content: ' + this.props.content);
+    console.log('...removing...');
+    this.props.action(this.props.content);
+  }
+  
   render() {
+    console.log('===============================');
+    console.log('>> RENDER CARD ... ');
+    console.log('All /Card/ props: ');
+    console.log(this.props);
+    console.log('1) props.action: ');
+    console.log(this.props.action);
+    console.log('/Card/ state: ');
+    console.log(this.state);
     return (
       <li className={styles.cardListElement}>
         <div className={styles.cardContainer}>
-          <h3>Single card</h3>
+          <h3>{this.props.content.elemTitle}</h3>
           <div className={styles.cardImgWrapper}>
-            <img className={styles.cardImg} src='https://images.pexels.com/photos/2146386/pexels-photo-2146386.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'></img>
+            <img className={styles.cardImg} src={this.props.content.elemUrl} alt='WRONG URL'></img>
+            {/*'https://images.pexels.com/photos/2146386/pexels-photo-2146386.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'*/}
           </div>
           <h4>Date</h4>
+          
+          {/*BUTTON RENDERED INSIDE OF DESTRUCTOR*/}
+          <Destructor 
+            currentCard={this.props.content.elemTitle} 
+            allCards={this.props.allCards} 
+            action={() => this.handleRemove()}
+          />
+          
         </div>
       </li>
     );

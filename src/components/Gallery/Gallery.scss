@@ -1,5 +1,10 @@
 @import '../../styles/settings.scss';
 
+.galleryContainer {
+  margin: 0 auto;
+  text-align: center;
+}
+
 .galleryList {
   border: 2px dashed gold;
 }
