@@ -4,8 +4,7 @@ import styles from './Card.scss';
 import Destructor from '../Destructor/Destructor';
 
 class Card extends React.Component {
-  
-  
+   
   static propTypes = {
     content: PropTypes.any,
     allCards: PropTypes.array,

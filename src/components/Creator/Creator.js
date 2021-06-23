@@ -7,6 +7,7 @@ class Creator extends React.Component {
   
   static propTypes = {
     action: PropTypes.func,
+    albumsList: PropTypes.array,
   }
 
   state = {
@@ -56,6 +57,8 @@ class Creator extends React.Component {
     console.log(this.props);
     console.log('1) props.action: ');
     console.log(this.props.action);
+    console.log('2) props.albumsList: ');
+    console.log(this.props.albumsList);
     console.log('/Creator/ state: ');
     console.log(this.state);
     console.log('1) state.elemTitle: ');
@@ -78,19 +81,42 @@ class Creator extends React.Component {
           </form>
         </div>
         
+        {/*REFEACTORED ELEMENT 22.06.2021*/}
         {/* URL INPUT */}
-        <div className={styles.inputContainer}>
-          <form>
-            <input 
-              className={styles.inputTypeText} 
-              type='name'
-              value={this.state.elemUrl}
-              onChange={this.handleChangeUrl}
-              placeholder='image url'
-            >
-            </input>
-          </form>
-        </div>
+        {!this.props.albumsList ? 
+          (<div className='inputContainer'>
+            <form>
+              <input 
+                className='inputTypeText' 
+                type='name'
+                value={this.state.elemUrl}
+                onChange={this.handleChangeUrl}
+                placeholder='image url'
+              >
+              </input>
+            </form>
+          </div>)
+          : ''
+        }
+
+        {/*NEW ELEMENT 22.06.2021*/}
+        {/* DROPDOWN INPUT */}
+        {/* TODO: REFACTOR STYLE OF SELECT - PREPARE CUSTOM DROPDOWN */}
+        {this.props.albumsList ? 
+          (<div className='inputContainer'>
+            <form>
+              <select>
+                {
+                  this.props.albumsList == [] || this.props.albumsList == undefined ? (
+                    <option>DUPA</option>
+                  )
+                    : this.props.albumsList.map((el, index) => <option key={index}>OK1{el.albumTitle.elemTitle}</option>)
+                }
+              </select>
+            </form>
+          </div>)
+          : ''
+        }
 
         <ButtonAdd action={this.handleOK}/>
         

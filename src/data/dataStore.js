@@ -1,3 +1,20 @@
+const keyGenFun = () => {
+  const keyArray = [];
+  const min = 0;
+  const max = 200;
+  for (let i = 0; i < 100; i++) {       
+    keyArray.push(Math.floor(Math.random() * (max - min)) + min);
+  }
+  function remDuplic(arr) {
+    return arr.filter((val, index) => arr.indexOf(val) === index);
+  }
+  return remDuplic(keyArray).sort(function(a, b){
+    return a-b;
+  });
+};
+
+const keysArr = keyGenFun();
+
 export const dataStore = {
   app: {
     version: '',
@@ -10,5 +27,8 @@ export const dataStore = {
   title: {
     titleText: 'React GALLERY app',
     subtitleText: 'COLLECT YOUR MEMORIES IN ONE PLACE',
+  },
+  gallery: {
+    keyGenerator: keysArr,
   },
 };
