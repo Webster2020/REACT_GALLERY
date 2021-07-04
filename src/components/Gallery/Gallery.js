@@ -13,7 +13,9 @@ class Gallery extends React.Component {
   state = {
     cards: [],
     albums: [], 
-    cardsInAlbum: {}, 
+    cardsInAlbum: {
+      other: [],
+    }, 
     unicKeys: [...dataStore.gallery.keyGenerator],    
   }
 
@@ -28,8 +30,16 @@ class Gallery extends React.Component {
           ...prevState.cards,
           {
             cardData,
+            cardId: prevState.unicKeys.pop(),
           }, 
         ],
+        cardsInAlbum: {
+          ...prevState.cardsInAlbum,
+          [cardData.album]: [
+            ...prevState.cardsInAlbum[cardData.album],
+            cardData, //think how to add here cardId 03.07.2021
+          ],
+        },
       }
     ));
   }
@@ -56,7 +66,11 @@ class Gallery extends React.Component {
             albumData, 
             albumId: prevState.unicKeys.pop(),
           },
-        ],       
+        ], 
+        cardsInAlbum: {
+          ...prevState.cardsInAlbum,
+          [albumData.elemTitle]: [],
+        },      
       }
     ));
   }
@@ -77,10 +91,6 @@ class Gallery extends React.Component {
     console.log(this.props);
     console.log('/Gallery/ state: ');
     console.log(this.state);
-    console.log('1) state.cards: ');
-    console.log(this.state.cards);
-    console.log('2) state.albums: ');
-    console.log(this.state.albums);
     return (
       <div className={styles.galleryContainer}>
 
@@ -94,9 +104,9 @@ class Gallery extends React.Component {
 
         <div className={styles.tempContainer}>
           {/*allTemps - props, which get state with array of all temp (every created temp is inside it)*/}
-          {this.state.cards.map((el, index) => 
+          {this.state.cards.map((el) => 
             <Card
-              key={index} 
+              key={`postcard-${el.cardId}`} 
               content={el} 
               allCards={this.state.cards} 
               action={(cardData) => this.remCard(cardData) 
@@ -106,12 +116,13 @@ class Gallery extends React.Component {
         </div>  
         
         <div className={styles.tempContainer}>
-          {this.state.albums.map((el, index) => {
+          {this.state.albums.map((el) => {
             return (
               <Album 
-                key={index}
+                key={`album-${el.albumId}`} 
                 content={el} 
                 allAlbums={this.state.albums}
+                cards={this.state.cardsInAlbum}
                 action={(albumData) => this.remAlbum(albumData)} 
               />
             );

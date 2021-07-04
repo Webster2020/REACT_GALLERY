@@ -22,12 +22,7 @@ class Destructor extends React.Component {
       <div>
         {/*BUTTON RENDERED INSIDE OF DESTRUCTOR*/}
         <div className={styles.buttonContainer}>
-          <button 
-            className={styles.buttonApply} 
-            onClick={() => this.props.action()}
-          >
-            BUTTON{this.props.currentCard}
-          </button>
+          <button className={styles.buttonApply} onClick={() => this.props.action()}>REMOVE</button>
         </div> 
       </div>
     );

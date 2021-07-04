@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Album.scss';
 import Destructor from '../Destructor/Destructor';
+import CardInAlbum from '../CardInAlbum/CardInAlbum';
 
 class Album extends React.Component {
   
   static propTypes = {
     content: PropTypes.any,
     allAlbums: PropTypes.array,
+    cards: PropTypes.object,
     action: PropTypes.func,
   }
 
@@ -28,21 +30,33 @@ class Album extends React.Component {
     console.log('/Album/ state: ');
     console.log(this.state);
     return (
-      <li className={styles.cardListElement}>
+      <div className={styles.cardListElement}>
         <div className={styles.cardContainer}>
           <h3>{this.props.content.albumData.elemTitle}</h3>
           <div className={styles.cardImgWrapper}>
-            <img className={styles.cardImg} src='https://images.pexels.com/photos/2146386/pexels-photo-2146386.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260' alt='WRONG URL'></img>
+
+            <div className={styles.tempContainer}>
+              {/*album in Card is the same elemTitle in Album*/}
+              {this.props.cards[this.props.content.albumData.elemTitle].map((el, index) => 
+                el.album == this.props.content.albumData.elemTitle ?
+                  (
+                    <CardInAlbum
+                      key={`postcardInAlbum-${index}`} 
+                      content={el} 
+                    />
+                  ) 
+                  : ''             
+              )} 
+            </div> 
+
           </div>
           <h4>{new Date().toLocaleDateString()}</h4>
           
           {/*BUTTON RENDERED INSIDE OF DESTRUCTOR*/}
-          <Destructor 
-            action={() => this.handleRemove()}
-          />
+          <Destructor action={() => this.handleRemove()}/>
           
         </div>
-      </li>
+      </div>
     );
   }
 }

@@ -23,30 +23,24 @@ class Card extends React.Component {
     console.log('>> RENDER CARD ... ');
     console.log('All /Card/ props: ');
     console.log(this.props);
-    console.log('1) props.action: ');
-    console.log(this.props.action);
     console.log('/Card/ state: ');
     console.log(this.state);
     return (
-      <li className={styles.cardListElement}>
+      <div className={styles.cardListElement}>
         <div className={styles.cardContainer}>
           <h3>{this.props.content.cardData.elemTitle}</h3>
+          <h4>ALBUM:{this.props.content.cardData.album}</h4>
           <div className={styles.cardImgWrapper}>
-            <img className={styles.cardImg} src={this.props.content.elemUrl} alt='WRONG URL'></img>
+            <img className={styles.cardImg} src={this.props.content.cardData.elemUrl} alt='WRONG URL'></img>
             {/*'https://images.pexels.com/photos/2146386/pexels-photo-2146386.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'*/}
           </div>
           <h4>{new Date().toLocaleDateString()}</h4>
-          <h4>{this.props.content.cardData.albumId}</h4>
           
           {/*BUTTON RENDERED INSIDE OF DESTRUCTOR*/}
-          <Destructor 
-            currentCard={this.props.content.cardData.elemTitle} 
-            allCards={this.props.allCards} 
-            action={() => this.handleRemove()}
-          />
+          <Destructor action={() => this.handleRemove()}/>
           
         </div>
-      </li>
+      </div>
     );
   }
 }
