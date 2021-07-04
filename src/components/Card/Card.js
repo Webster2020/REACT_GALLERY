@@ -28,13 +28,12 @@ class Card extends React.Component {
     return (
       <div className={styles.cardListElement}>
         <div className={styles.cardContainer}>
-          <h3>{this.props.content.cardData.elemTitle}</h3>
-          <h4>ALBUM:{this.props.content.cardData.album}</h4>
+          <h3 className={styles.cardTitle}>{this.props.content.cardData.elemTitle}</h3>
+          <h4 className={styles.cardText}>ALBUM: {this.props.content.cardData.album}</h4>
           <div className={styles.cardImgWrapper}>
-            <img className={styles.cardImg} src={this.props.content.cardData.elemUrl} alt='WRONG URL'></img>
-            {/*'https://images.pexels.com/photos/2146386/pexels-photo-2146386.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'*/}
+            <img className={styles.cardImg} src={this.props.content.cardData.elemUrl} alt='YOUR IMAGE'></img>
           </div>
-          <h4>{new Date().toLocaleDateString()}</h4>
+          <h4 className={styles.cardText}>{new Date().toLocaleDateString()}</h4>
           
           {/*BUTTON RENDERED INSIDE OF DESTRUCTOR*/}
           <Destructor action={() => this.handleRemove()}/>

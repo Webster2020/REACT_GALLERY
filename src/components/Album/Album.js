@@ -13,6 +13,10 @@ class Album extends React.Component {
     action: PropTypes.func,
   }
 
+  state = {
+    imgPosition: 5,
+  }
+
   handleRemove() {
     console.log('>> Run /handleRemove/ from /Album/');
     console.log('this.props.content: ' + this.props.content);
@@ -20,6 +24,14 @@ class Album extends React.Component {
     this.props.action(this.props.content);
   }
   
+  handleRollerUp() {
+    this.setState(prevState => ({imgPosition: prevState.imgPosition + 110}));
+  }
+
+  handleRollerDown() {
+    this.setState(prevState => ({imgPosition: prevState.imgPosition - 110}));
+  }
+
   render() {
     console.log('===============================');
     console.log('>> RENDER ALBUM ... ');
@@ -30,12 +42,15 @@ class Album extends React.Component {
     console.log('/Album/ state: ');
     console.log(this.state);
     return (
-      <div className={styles.cardListElement}>
-        <div className={styles.cardContainer}>
-          <h3>{this.props.content.albumData.elemTitle}</h3>
-          <div className={styles.cardImgWrapper}>
-
-            <div className={styles.tempContainer}>
+      <div className={styles.albumListElement}>
+        <div className={styles.albumContainer}>
+          <div className={styles.albumHeader}>
+            <button className={styles.albumButton} onClick={() => this.handleRollerUp()}>...PREV</button>
+            <h3 className={styles.albumTitle}>{this.props.content.albumData.elemTitle}</h3>
+            <button className={styles.albumButton} onClick={() => this.handleRollerDown()}>NEXT...</button>
+          </div>
+          <div className={styles.albumImgWrapper}>
+            <div className={styles.albumImg} style={{top: `${this.state.imgPosition}px`}}>
               {/*album in Card is the same elemTitle in Album*/}
               {this.props.cards[this.props.content.albumData.elemTitle].map((el, index) => 
                 el.album == this.props.content.albumData.elemTitle ?
@@ -48,9 +63,7 @@ class Album extends React.Component {
                   : ''             
               )} 
             </div> 
-
           </div>
-          <h4>{new Date().toLocaleDateString()}</h4>
           
           {/*BUTTON RENDERED INSIDE OF DESTRUCTOR*/}
           <Destructor action={() => this.handleRemove()}/>

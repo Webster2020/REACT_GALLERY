@@ -21,10 +21,9 @@ class CardInAlbum extends React.Component {
       <div className={styles.cardListElement}>
         <div className={styles.cardContainer}>
           <div className={styles.cardImgWrapper}>
-            <img className={styles.cardImg} src={this.props.content.elemUrl} alt='WRONG URL'></img>
-            {/*'https://images.pexels.com/photos/2146386/pexels-photo-2146386.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'*/}
+            <img className={styles.cardImg} src={this.props.content.elemUrl} alt={this.props.content.elemTitle}></img>
           </div>
-          <h4>{new Date().toLocaleDateString()}</h4>        
+          <h4 className={styles.cardText}>{new Date().toLocaleDateString()}</h4>        
         </div>
       </div>
     );

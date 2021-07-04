@@ -16,24 +16,42 @@
   text-align: center; 
   border-radius: 10px;
   overflow: hidden;
-  background-color: dodgerblue;
-  box-shadow: 0 8px 6px -6px black;
-  border: 2px solid dodgerblue;
-  transition: 0.7s;
+  background-color: $color-cards;
+  box-shadow: 0 8px 6px -6px $color-black;
+  border: 2px solid $color-cards;
+  transition: $transition;
   &:hover {
-    box-shadow: rgb(3, 8, 14) 1px 10px 20px -1px;;
-    transition: 0.7s;
+    box-shadow: $color-black 1px 10px 20px -1px;;
+    transition: $transition;
+    .cardImg {
+      transition: $transition;
+      opacity: 1;
+    }
   } 
+}
+
+.cardTitle {
+  margin: 5px 0 15px;
+  font-family: $font-title;
+  letter-spacing: 5px;
+  font-size: 20px;
+}
+
+.cardText {
+  margin: 5px 0 10px;
+  font-family: $font-title;
+  letter-spacing: 2px;
+  font-size: 15px;
 }
 
 .cardImgWrapper {
   display: block;
   position: relative;
-  height: 220px;
+  height: 190px;
   margin: 10px;
   border-radius: 10px;
   overflow: hidden;
-  border: 3px solid dodgerblue; 
+  border: 3px solid $color-cards; 
 }
 
 .cardImg {
@@ -44,4 +62,5 @@
   width: 100%;
   object-fit: fill;
   opacity: 0.9;
+  transition: 0.7s;
 }

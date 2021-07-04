@@ -47,9 +47,14 @@ class Gallery extends React.Component {
   //METHOD: remove 'cardData' from array 'cards' (changes state)
   remCard(cardData) {
     console.log('>> Run /remCard/ from /Gallery/');
-    console.log('cardData: ' + cardData);
+    console.log('cardData: ');
+    console.log(cardData.cardData);
+    console.log(cardData.cardData.album);
     this.setState(prevState => (
       prevState.cards.splice(prevState.cards.indexOf(cardData), 1)
+    ));
+    this.setState(prevState => (
+      prevState.cardsInAlbum[cardData.cardData.album].splice(prevState.cardsInAlbum[cardData.cardData.album].indexOf(cardData.cardData), 1)
     ));
   }
 
