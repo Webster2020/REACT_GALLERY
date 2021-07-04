@@ -6,6 +6,7 @@ import ButtonAdd from '../ButtonAdd/ButtonAdd';
 class Creator extends React.Component {
   
   static propTypes = {
+    type: PropTypes.string,
     action: PropTypes.func,
     albumsList: PropTypes.array,
   }
@@ -13,6 +14,7 @@ class Creator extends React.Component {
   state = {
     elemTitle: '',
     elemUrl: '',
+    elemId: 'other', //new 02.07.2021
   }
   
   //METHOD: set state.elemTitle as 'event.target.value' (in this case it is value typed to input area)
@@ -35,17 +37,34 @@ class Creator extends React.Component {
     });
   }
   
+  //NEW METHOD 02.07.2021: 
+  handleChangeAlbumId = event => {
+    console.log('>> Run /handleChangeAlbumId/ from /Creator/');
+    console.log('event.target.value: ' + event.target.value);
+    console.log(event.target.value);
+    console.log(event.target);
+    this.setState({
+      elemId: event.target.value,
+    });
+  }
+
   //METHOD: pass on state.value (setted by 'handleChange') as argument of 'action' (structure of 'action' in <Gallery> in addTemp()); then set state.value as empty string
   handleOK = () => {
     console.log('>> CLICK!');
     console.log('>> Run /handleOK/ from /Creator/');
     console.log('this.state.elemTitle: ' + this.state.elemTitle);
     console.log('this.state.elemUrl: ' + this.state.elemUrl);
+    console.log('this.state.elemId: ' + this.state.elemId);
     if(this.state.elemTitle != ''){
-      this.props.action({elemTitle: this.state.elemTitle, elemUrl: this.state.elemUrl});
+      this.props.action({
+        elemTitle: this.state.elemTitle, 
+        elemUrl: this.state.elemUrl,
+        albumId: this.state.elemId, //new 02.07.2021
+      });
       this.setState({
         elemTitle: '',
         elemUrl: '',
+        elemId: 'other', //new 02.07.2021
       });
     }
   }
@@ -65,6 +84,8 @@ class Creator extends React.Component {
     console.log(this.state.elemTitle);
     console.log('2) state.elemUrl: ');
     console.log(this.state.elemUrl);
+    console.log('3) state.elemId: ');
+    console.log(this.state.elemId);
     return (
       <div>
         {/* TITLE INPUT */}
@@ -83,11 +104,11 @@ class Creator extends React.Component {
         
         {/*REFEACTORED ELEMENT 22.06.2021*/}
         {/* URL INPUT */}
-        {!this.props.albumsList ? 
-          (<div className='inputContainer'>
+        {this.props.type == 'card' ? //new 02.07.2021
+          (<div className={styles.inputContainer}>
             <form>
               <input 
-                className='inputTypeText' 
+                className={styles.inputTypeText} 
                 type='name'
                 value={this.state.elemUrl}
                 onChange={this.handleChangeUrl}
@@ -102,15 +123,16 @@ class Creator extends React.Component {
         {/*NEW ELEMENT 22.06.2021*/}
         {/* DROPDOWN INPUT */}
         {/* TODO: REFACTOR STYLE OF SELECT - PREPARE CUSTOM DROPDOWN */}
-        {this.props.albumsList ? 
-          (<div className='inputContainer'>
+        {this.props.type == 'card' ? //new 02.07.2021 
+          (<div className={styles.inputContainer}>
             <form>
-              <select>
+              <select value={this.state.elemId} onChange={this.handleChangeAlbumId}> {/*new 02.07.2021*/}
+                <option>other</option>
                 {
                   this.props.albumsList == [] || this.props.albumsList == undefined ? (
-                    <option>DUPA</option>
+                    <option>NO ALBUM</option>
                   )
-                    : this.props.albumsList.map((el, index) => <option key={index}>OK1{el.albumTitle.elemTitle}</option>)
+                    : this.props.albumsList.map((el, index) => <option key={index}>{el.albumData.elemTitle}</option>)
                 }
               </select>
             </form>

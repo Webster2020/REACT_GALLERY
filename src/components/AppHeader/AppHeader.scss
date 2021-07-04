@@ -9,6 +9,7 @@
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid black; 
+  color: black;
 }
 
 .appHeaderImg {
@@ -20,10 +21,10 @@
   //object-fit: fill;
   object-fit: cover; //for imgAlt
   object-position: bottom;
-  transition: 2s;
+  transition: 4s;
   &:hover {
     object-position: top;
-    transition: 2s;
+    transition: 4s;
     cursor: pointer;
   }
 }

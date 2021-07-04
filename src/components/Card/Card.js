@@ -6,7 +6,7 @@ import Destructor from '../Destructor/Destructor';
 class Card extends React.Component {
    
   static propTypes = {
-    content: PropTypes.any,
+    content: PropTypes.object,
     allCards: PropTypes.array,
     action: PropTypes.func,
   }
@@ -30,16 +30,17 @@ class Card extends React.Component {
     return (
       <li className={styles.cardListElement}>
         <div className={styles.cardContainer}>
-          <h3>{this.props.content.elemTitle}</h3>
+          <h3>{this.props.content.cardData.elemTitle}</h3>
           <div className={styles.cardImgWrapper}>
             <img className={styles.cardImg} src={this.props.content.elemUrl} alt='WRONG URL'></img>
             {/*'https://images.pexels.com/photos/2146386/pexels-photo-2146386.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'*/}
           </div>
-          <h4>Date</h4>
+          <h4>{new Date().toLocaleDateString()}</h4>
+          <h4>{this.props.content.cardData.albumId}</h4>
           
           {/*BUTTON RENDERED INSIDE OF DESTRUCTOR*/}
           <Destructor 
-            currentCard={this.props.content.elemTitle} 
+            currentCard={this.props.content.cardData.elemTitle} 
             allCards={this.props.allCards} 
             action={() => this.handleRemove()}
           />

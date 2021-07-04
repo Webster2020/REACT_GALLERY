@@ -20,7 +20,7 @@ class ButtonAdd extends React.Component {
     console.log(this.state);
     return (
       <div className={styles.buttonContainer}>
-        <button className={styles.buttonApply} onClick={this.props.action}>ADD CARD</button>
+        <button className={styles.buttonApply} onClick={this.props.action}>ADD +</button>
       </div>      
     );
   }

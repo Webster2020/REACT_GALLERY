@@ -11,7 +11,7 @@ class App extends React.Component {
         <AppHeader 
           title={dataStore.title.titleText}
           subtitle={dataStore.title.subtitleText}
-          background={dataStore.appHeader.bcgImage}
+          background={dataStore.appHeader.bcgImageAlt4}
         />
         <Gallery />
       </div>

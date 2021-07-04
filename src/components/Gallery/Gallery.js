@@ -8,6 +8,8 @@ import Album from '../Album/Album';
 
 class Gallery extends React.Component {
 
+  // NO PROPS FROM APP
+
   state = {
     cards: [],
     albums: [], 
@@ -15,38 +17,43 @@ class Gallery extends React.Component {
     unicKeys: [...dataStore.gallery.keyGenerator],    
   }
 
-  //METHOD: add new 'cardContent' to array 'cards' (changes state)
-  addCard(cardContent) {
+  //METHOD: add new 'cardData' to array 'cards' (changes state)
+  addCard(cardData) {
     console.log('>> Run /addCard/ from /Gallery/');
-    console.log('cardContent: ' + cardContent);
+    console.log('cardData: ' + cardData);
     this.setState(prevState => (
-      //prevState.temps.push(tempContent)
+      //prevState.temps.push(tempData)
       {
-        cards: [...prevState.cards, cardContent],
+        cards: [
+          ...prevState.cards,
+          {
+            cardData,
+          }, 
+        ],
       }
     ));
   }
 
-  //METHOD: remove 'cardContent' from array 'cards' (changes state)
-  remCard(cardContent) {
+  //METHOD: remove 'cardData' from array 'cards' (changes state)
+  remCard(cardData) {
     console.log('>> Run /remCard/ from /Gallery/');
-    console.log('cardContent: ' + cardContent);
+    console.log('cardData: ' + cardData);
     this.setState(prevState => (
-      prevState.cards.splice(prevState.cards.indexOf(cardContent), 1)
+      prevState.cards.splice(prevState.cards.indexOf(cardData), 1)
     ));
   }
 
   //NEW METHODS 21.06.2021
-  //METHOD: add new 'albumTitle' to array 'albums' (changes state)
-  addAlbum(albumTitle) {
+  //METHOD: add new 'albumData' to array 'albums' (changes state)
+  addAlbum(albumData) {
     console.log('>> Run /addAlbum/ from /Gallery/');
-    console.log('albumTitle: ' + albumTitle);
+    console.log('albumData: ' + albumData);
     this.setState(prevState => (
       {
         albums: [
           ...prevState.albums,
           {
-            albumTitle, 
+            albumData, 
             albumId: prevState.unicKeys.pop(),
           },
         ],       
@@ -54,12 +61,12 @@ class Gallery extends React.Component {
     ));
   }
   
-  //METHOD: remove 'albumTitle' from array 'albums' (changes state)
-  remAlbum(albumTitle) {
+  //METHOD: remove 'albumData' from array 'albums' (changes state)
+  remAlbum(albumData) {
     console.log('>> Run /remAlbum/ from /Gallery/');
-    console.log('albumTitle: ' + albumTitle);
+    console.log('albumData: ' + albumData);
     this.setState(prevState => (
-      prevState.albums.splice(prevState.albums.indexOf(albumTitle), 1)
+      prevState.albums.splice(prevState.albums.indexOf(albumData), 1)
     ));
   }
 
@@ -77,13 +84,13 @@ class Gallery extends React.Component {
     return (
       <div className={styles.galleryContainer}>
 
-        <h2>GALLERY</h2>
+        <h2 className={styles.galleryTitle}>GALLERY</h2>
 
-        ADD CARD
-        <Creator action={(cardContent, url) => this.addCard(cardContent, url)}/>
+        ADD POSTCARD
+        <Creator type='card' action={(cardData) => this.addCard(cardData)} albumsList={this.state.albums}/>
         
         ADD ALBUM
-        <Creator action={(albumTitle) => this.addAlbum(albumTitle)} albumsList={this.state.albums}/>
+        <Creator type='album' action={(albumData) => this.addAlbum(albumData)} albumsList={this.state.albums}/>
 
         <div className={styles.tempContainer}>
           {/*allTemps - props, which get state with array of all temp (every created temp is inside it)*/}
@@ -92,7 +99,7 @@ class Gallery extends React.Component {
               key={index} 
               content={el} 
               allCards={this.state.cards} 
-              action={(cardContent) => this.remCard(cardContent) 
+              action={(cardData) => this.remCard(cardData) 
               }
             />
           )} 
@@ -105,7 +112,7 @@ class Gallery extends React.Component {
                 key={index}
                 content={el} 
                 allAlbums={this.state.albums}
-                action={(albumTitle) => this.remAlbum(albumTitle)} 
+                action={(albumData) => this.remAlbum(albumData)} 
               />
             );
           })}       
