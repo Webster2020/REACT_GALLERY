@@ -116,6 +116,7 @@ class Creator extends React.Component {
               value={this.state.elemTitle}
               onChange={this.handleChangeTitle}
               placeholder='title'
+              maxLength="15"
             >
             </input>
           </form>

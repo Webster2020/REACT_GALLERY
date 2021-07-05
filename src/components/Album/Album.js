@@ -45,9 +45,17 @@ class Album extends React.Component {
       <div className={styles.albumListElement}>
         <div className={styles.albumContainer}>
           <div className={styles.albumHeader}>
-            <button className={styles.albumButton} onClick={() => this.handleRollerUp()}>...PREV</button>
+            <button 
+              className={styles.albumButton} 
+              onClick={() => this.handleRollerUp()}>
+              ...PREV
+            </button>
             <h3 className={styles.albumTitle}>{this.props.content.albumData.elemTitle}</h3>
-            <button className={styles.albumButton} onClick={() => this.handleRollerDown()}>NEXT...</button>
+            <button 
+              className={styles.albumButton} 
+              onClick={() => this.handleRollerDown()}>
+              NEXT...
+            </button>
           </div>
           <div className={styles.albumImgWrapper}>
             <div className={styles.albumImg} style={{top: `${this.state.imgPosition}px`}}>

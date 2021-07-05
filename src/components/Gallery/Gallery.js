@@ -16,7 +16,8 @@ class Gallery extends React.Component {
     cardsInAlbum: {
       other: [],
     }, 
-    unicKeys: [...dataStore.gallery.keyGenerator],    
+    unicKeys: [...dataStore.gallery.keyGenerator],
+    cardPosition: 0,    
   }
 
   //METHOD: add new 'cardData' to array 'cards' (changes state)
@@ -89,6 +90,14 @@ class Gallery extends React.Component {
     ));
   }
 
+  handleRollerCardLeft() {
+    this.setState(prevState => ({cardPosition: prevState.cardPosition + 200}));
+  }
+
+  handleRollerCardRight() {
+    this.setState(prevState => ({cardPosition: prevState.cardPosition - 200}));
+  }
+
   render() {
     console.log('===============================');
     console.log('>> RENDER GALLERY ... ');
@@ -98,7 +107,6 @@ class Gallery extends React.Component {
     console.log(this.state);
     return (
       <div className={styles.galleryContainer}>
-
         <h2 className={styles.galleryTitle}>GALLERY</h2>
 
         ADD POSTCARD
@@ -107,31 +115,54 @@ class Gallery extends React.Component {
         ADD ALBUM
         <Creator type='album' action={(albumData) => this.addAlbum(albumData)} albumsList={this.state.albums}/>
 
-        <div className={styles.tempContainer}>
-          {/*allTemps - props, which get state with array of all temp (every created temp is inside it)*/}
-          {this.state.cards.map((el) => 
-            <Card
-              key={`postcard-${el.cardId}`} 
-              content={el} 
-              allCards={this.state.cards} 
-              action={(cardData) => this.remCard(cardData) 
-              }
-            />
-          )} 
-        </div>  
+        <div className={styles.galleryContainerInner}>
+
+          <button 
+            className={styles.lrButton} 
+            onClick={() => this.handleRollerCardLeft()}>
+            &lt;
+          </button>
+
+          <div className={styles.galleryWrapper}>
+
+            <div 
+              className={styles.galleryInnerCard} 
+              style={{left: `${this.state.cardPosition}px`}}>
+              {this.state.cards.map((el) => 
+                <Card
+                  key={`postcard-${el.cardId}`} 
+                  content={el} 
+                  allCards={this.state.cards} 
+                  action={(cardData) => this.remCard(cardData) 
+                  }
+                />
+              )}
+            </div> 
+
+          </div> 
+
+          <button 
+            className={styles.lrButton} 
+            onClick={() => this.handleRollerCardRight()}>
+            &gt;
+          </button>
+          
+        </div> 
         
-        <div className={styles.tempContainer}>
-          {this.state.albums.map((el) => {
-            return (
-              <Album 
-                key={`album-${el.albumId}`} 
-                content={el} 
-                allAlbums={this.state.albums}
-                cards={this.state.cardsInAlbum}
-                action={(albumData) => this.remAlbum(albumData)} 
-              />
-            );
-          })}       
+        <div className={styles.galleryWrapper}>
+          <div className={styles.galleryInnerAlbum}>      
+            {this.state.albums.map((el) => {
+              return (
+                <Album 
+                  key={`album-${el.albumId}`} 
+                  content={el} 
+                  allAlbums={this.state.albums}
+                  cards={this.state.cardsInAlbum}
+                  action={(albumData) => this.remAlbum(albumData)} 
+                />
+              );
+            })}  
+          </div>     
         </div>     
 
       </div>
