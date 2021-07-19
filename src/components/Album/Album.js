@@ -32,6 +32,10 @@ class Album extends React.Component {
     this.setState(prevState => ({imgPosition: prevState.imgPosition - 110}));
   }
 
+  showAlert() {
+    alert('CLICK');
+  }
+
   render() {
     console.log('===============================');
     console.log('>> RENDER ALBUM ... ');
@@ -46,15 +50,13 @@ class Album extends React.Component {
         <div className={styles.albumContainer}>
           <div className={styles.albumHeader}>
             <button 
-              className={styles.albumButton} 
-              onClick={() => this.handleRollerUp()}>
-              ...PREV
+              className={`${styles.albumButton} ${styles.albumButtonUp}`} 
+              onClick={() => this.handleRollerUp()}>             
             </button>
             <h3 className={styles.albumTitle}>{this.props.content.albumData.elemTitle}</h3>
             <button 
-              className={styles.albumButton} 
+              className={`${styles.albumButton} ${styles.albumButtonDown}`} 
               onClick={() => this.handleRollerDown()}>
-              NEXT...
             </button>
           </div>
           <div className={styles.albumImgWrapper}>
@@ -65,7 +67,8 @@ class Album extends React.Component {
                   (
                     <CardInAlbum
                       key={`postcardInAlbum-${index}`} 
-                      content={el} 
+                      content={el}
+                      action={() => this.showAlert()}
                     />
                   ) 
                   : ''             
@@ -73,7 +76,6 @@ class Album extends React.Component {
             </div> 
           </div>
           
-          {/*BUTTON RENDERED INSIDE OF DESTRUCTOR*/}
           <Destructor action={() => this.handleRemove()}/>
           
         </div>

@@ -18,14 +18,14 @@ class CardInAlbum extends React.Component {
     console.log('/Card/ state: ');
     console.log(this.state);
     return (
-      <div className={styles.cardListElement}>
+      <button className={styles.cardListElement} onClick={() => this.props.action()}>
         <div className={styles.cardContainer}>
           <div className={styles.cardImgWrapper}>
             <img className={styles.cardImg} src={this.props.content.elemUrl} alt={this.props.content.elemTitle}></img>
           </div>
           <h4 className={styles.cardText}>{new Date().toLocaleDateString()}</h4>        
         </div>
-      </div>
+      </button>
     );
   }
 }

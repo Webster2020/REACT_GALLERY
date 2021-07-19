@@ -1,5 +1,19 @@
 @import '../../styles/settings.scss';
 
+.cardContainerButton {
+  position: relative;
+  height: 400px;
+  background-color: inherit;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    border: 3px dotted $color-cards;
+    border-radius: 15px;
+  }
+}
+
 .cardListElement {
   margin: 20px;
   display: inline-block;
@@ -21,7 +35,7 @@
   border: 2px solid $color-cards;
   transition: $transition;
   &:hover {
-    box-shadow: $color-black 1px 10px 20px -1px;;
+    box-shadow: $color-black 1px 10px 20px -1px;
     transition: $transition;
     .cardImg {
       transition: $transition;

@@ -17,7 +17,8 @@ class Gallery extends React.Component {
       other: [],
     }, 
     unicKeys: [...dataStore.gallery.keyGenerator],
-    cardPosition: 0,    
+    cardPosition: 0, 
+    albumPosition: 0,   
   }
 
   //METHOD: add new 'cardData' to array 'cards' (changes state)
@@ -98,6 +99,14 @@ class Gallery extends React.Component {
     this.setState(prevState => ({cardPosition: prevState.cardPosition - 200}));
   }
 
+  handleRollerAlbumLeft() {
+    this.setState(prevState => ({albumPosition: prevState.albumPosition + 200}));
+  }
+
+  handleRollerAlbumRight() {
+    this.setState(prevState => ({albumPosition: prevState.albumPosition - 200}));
+  }
+
   render() {
     console.log('===============================');
     console.log('>> RENDER GALLERY ... ');
@@ -106,7 +115,9 @@ class Gallery extends React.Component {
     console.log('/Gallery/ state: ');
     console.log(this.state);
     return (
+
       <div className={styles.galleryContainer}>
+
         <h2 className={styles.galleryTitle}>GALLERY</h2>
 
         ADD POSTCARD
@@ -127,7 +138,9 @@ class Gallery extends React.Component {
 
             <div 
               className={styles.galleryInnerCard} 
-              style={{left: `${this.state.cardPosition}px`}}>
+              style={{left: `${this.state.cardPosition}px`}}
+            >
+
               {this.state.cards.map((el) => 
                 <Card
                   key={`postcard-${el.cardId}`} 
@@ -137,6 +150,7 @@ class Gallery extends React.Component {
                   }
                 />
               )}
+
             </div> 
 
           </div> 
@@ -149,21 +163,44 @@ class Gallery extends React.Component {
           
         </div> 
         
-        <div className={styles.galleryWrapper}>
-          <div className={styles.galleryInnerAlbum}>      
-            {this.state.albums.map((el) => {
-              return (
-                <Album 
-                  key={`album-${el.albumId}`} 
-                  content={el} 
-                  allAlbums={this.state.albums}
-                  cards={this.state.cardsInAlbum}
-                  action={(albumData) => this.remAlbum(albumData)} 
-                />
-              );
-            })}  
+        <div className={styles.galleryContainerInner}>
+          
+          <button 
+            className={styles.lrButton} 
+            onClick={() => this.handleRollerAlbumLeft()}>
+            &lt;
+          </button>
+
+          <div className={styles.galleryWrapper}>
+
+            <div 
+              className={styles.galleryInnerAlbum}
+              style={{left: `${this.state.albumPosition}px`}}
+            >
+                
+              {this.state.albums.map((el) => {
+                return (
+                  <Album 
+                    key={`album-${el.albumId}`} 
+                    content={el} 
+                    allAlbums={this.state.albums}
+                    cards={this.state.cardsInAlbum}
+                    action={(albumData) => this.remAlbum(albumData)} 
+                  />
+                );
+              })}  
+
+            </div>
+
           </div>     
-        </div>     
+        
+          <button 
+            className={styles.lrButton} 
+            onClick={() => this.handleRollerAlbumRight()}>
+            &gt;
+          </button>
+
+        </div>
 
       </div>
     );
