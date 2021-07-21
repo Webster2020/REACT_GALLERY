@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import styles from './Album.scss';
 import Destructor from '../Destructor/Destructor';
 import CardInAlbum from '../CardInAlbum/CardInAlbum';
+import {Link} from 'react-router-dom';
+
+// {/* <Link to={`/albumopen/${id}`} className={styles.link}></Link> */}
 
 class Album extends React.Component {
   
@@ -50,43 +53,45 @@ class Album extends React.Component {
     console.log('/Album/ state: ');
     console.log(this.state);
     return (
-      <div className={styles.albumListElement}>
-        <div className={styles.albumContainer}>
-          <div className={styles.albumHeader}>
-            <button 
-              className={`${styles.albumButton} ${styles.albumButtonUp}`} 
-              onClick={() => this.handleRollerUp()}>             
-            </button>
-            <h3 className={styles.albumTitle}>{this.props.content.albumData.elemTitle}</h3>
-            <button 
-              className={`${styles.albumButton} ${styles.albumButtonDown}`} 
-              onClick={() => this.handleRollerDown()}>
-            </button>
+      <Link to={`/album/${this.props.content.albumData.elemTitle}`} className={styles.link}>
+        <div className={styles.albumListElement}>
+          <div className={styles.albumContainer}>
+            <div className={styles.albumHeader}>
+              <button 
+                className={`${styles.albumButton} ${styles.albumButtonUp}`} 
+                onClick={() => this.handleRollerUp()}>             
+              </button>
+              <h3 className={styles.albumTitle}>{this.props.content.albumData.elemTitle}</h3>
+              <button 
+                className={`${styles.albumButton} ${styles.albumButtonDown}`} 
+                onClick={() => this.handleRollerDown()}>
+              </button>
+            </div>
+            <div className={styles.albumImgWrapper}>
+              <div className={styles.albumImg} style={{top: `${this.state.imgPosition}px`}}>
+                {/*album in Card is the same elemTitle in Album*/}
+                {this.props.cards[this.props.content.albumData.elemTitle].map((el, index) => 
+                  el.album == this.props.content.albumData.elemTitle ?
+                    (
+                      <CardInAlbum
+                        key={`postcardInAlbum-${index}`} 
+                        content={el}
+                        action={() => this.showAlert()}
+                      />
+                    ) 
+                    : ''             
+                )} 
+              </div> 
+            </div>
+            
+            <div className={styles.ablumButtonWrapper}>
+              <Destructor buttonName='OPEN ALBUM' action={() => this.handleShowAlbum()}/>          
+              <Destructor buttonName='REMOVE' action={() => this.handleRemove()}/>
+            </div>
+            
           </div>
-          <div className={styles.albumImgWrapper}>
-            <div className={styles.albumImg} style={{top: `${this.state.imgPosition}px`}}>
-              {/*album in Card is the same elemTitle in Album*/}
-              {this.props.cards[this.props.content.albumData.elemTitle].map((el, index) => 
-                el.album == this.props.content.albumData.elemTitle ?
-                  (
-                    <CardInAlbum
-                      key={`postcardInAlbum-${index}`} 
-                      content={el}
-                      action={() => this.showAlert()}
-                    />
-                  ) 
-                  : ''             
-              )} 
-            </div> 
-          </div>
-          
-          <div className={styles.ablumButtonWrapper}>
-            <Destructor buttonName='OPEN ALBUM' action={() => this.handleShowAlbum()}/>          
-            <Destructor buttonName='REMOVE' action={() => this.handleRemove()}/>
-          </div>
-          
         </div>
-      </div>
+      </Link>
     );
   }
 }

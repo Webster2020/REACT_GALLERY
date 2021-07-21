@@ -1,19 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Header.scss';
+import {Link} from 'react-router-dom';
 
 class Header extends React.Component {
-  static propTypes = {
-    background: PropTypes.string,
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-  }
 
   render() {
-    console.log('===============================');
-    console.log('>> RENDER HEADER ... ');
-    console.log('All /Header/ props: ');
-    console.log(this.props);
     return (
       <nav className={styles.headerNavBar}>
         <section className={styles.headerContainer}>
@@ -23,7 +14,8 @@ class Header extends React.Component {
           <div className={styles.headerMenuWrapper}>
             <ul className={styles.headerMenu}>
               <li className={styles.headerMenuElement}>
-                <a className={styles.headerLink} href='#'>HOME</a>
+                <Link to={`/`} className={styles.headerLink}>HOME</Link>
+                {/* <a className={styles.headerLink} href='#'>HOME</a> */}
               </li>
             </ul>
           </div>

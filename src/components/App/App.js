@@ -4,15 +4,13 @@ import AlbumOpen from '../AlbumOpen/AlbumOpen';
 // import Faq from '../Faq/Faq';
 // import MainLayout from '../MainLayout/MainLayout';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-//import styles from './App.scss';
-//import List from '../List/ListContainer';
 
 const App = () => (
 
   <BrowserRouter>
     <Switch>
       <Route exact path='/' component={Home} />
-      <Route exact path='/albumopen' component={AlbumOpen} />
+      <Route exact path='/album/:id' component={AlbumOpen} />
       {/* <Route exact path='/faq' component={} /> */}
     </Switch>
   </BrowserRouter>
