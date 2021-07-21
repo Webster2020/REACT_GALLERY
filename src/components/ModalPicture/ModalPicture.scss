@@ -34,36 +34,52 @@
   height: 90vh;
   background-color: inherit;
   border-radius: 10px;
-  box-shadow: 0 2px 15px 2px black;
+  box-shadow: 0 2px 15px 2px $color-black;
   text-align: center;
   
   .modalButtonX {
     position: absolute;
     top: 0;
     right: 0;
-    margin: 3px;
+    margin: 2px;
     padding: 5px 10px;
     background-color: inherit;
     border: none;
     font-size: 20px;
     font-weight: 900;
-    color: black;
+    color: $color-black;
     cursor: pointer;
     transition: 0.1s;
     &:hover {
       color: gray;
       transition: 0.1s;
       border-radius: 10px;
-      box-shadow: inset 0 0.5px 1px 0.5px white;
+      box-shadow: inset 0 0.5px 1px 0.5px $color-white;
     }
   }
   
   .modalWrapper {
-    color: black;
+    position: relative;
+    margin-top: 50px;
+    color: $color-black;
     .modalTitle {
-      margin: 10px 0;
+      position: absolute;
+      padding: 50px 0;
+      height: 200px;
+      width: 100%;
+      top: 0;
+      left: 0;
+      color: white;
+      text-align: center;
+      opacity: 0;
+      transition: 0.3s;
+      &:hover {
+        opacity: 1;
+        transition: 0.3s;
+      }
       h2 {
         margin: 0;
+        font-size: 30px;
       }
     }
     .modalPictureWrapper {

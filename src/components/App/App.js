@@ -1,22 +1,38 @@
 import React from 'react';
-import styles from './App.scss';
-import {dataStore} from '../../data/dataStore.js';
-import AppHeader from '../AppHeader/AppHeader.js';
-import Gallery from '../Gallery/Gallery.js';
+import Home from '../Home/Home.js';
+import AlbumOpen from '../AlbumOpen/AlbumOpen';
+// import Faq from '../Faq/Faq';
+// import MainLayout from '../MainLayout/MainLayout';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+//import styles from './App.scss';
+//import List from '../List/ListContainer';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className={styles.appContainer}>
-        <AppHeader 
-          title={dataStore.title.titleText}
-          subtitle={dataStore.title.subtitleText}
-          background={dataStore.appHeader.bcgImageAlt4}
-        />
-        <Gallery />
-      </div>
-    );  
-  }
-}
+const App = () => (
+
+  <BrowserRouter>
+    <Switch>
+      <Route exact path='/' component={Home} />
+      <Route exact path='/albumopen' component={AlbumOpen} />
+      {/* <Route exact path='/faq' component={} /> */}
+    </Switch>
+  </BrowserRouter>
+  
+  // <BrowserRouter>
+  //   <MainLayout>
+  //     <AnimatedSwitch
+  //       atEnter={{ opacity: 0 }}
+  //       atLeave={{ opacity: 1 }}
+  //       atActive={{ opacity: 1 }}
+  //       className={styles.switchWrapper}
+  //     >
+  //       <Route exact path='/' component={Home} />
+  //       <Route exact path='/info' component={Info} />
+  //       <Route exact path='/faq' component={Faq} />
+  //       <Route exact path="/list/:id" component={List} />
+  //       <Route exact path="/search/:searchString" component={SearchResults} /> {/* new rout 17.5 */}
+  //     </AnimatedSwitch>
+  //   </MainLayout>
+  // </BrowserRouter>
+);
 
 export default App;

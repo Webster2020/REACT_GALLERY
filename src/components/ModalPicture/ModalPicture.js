@@ -8,6 +8,7 @@ class ModalPicture extends React.Component {
     picture: PropTypes.string,
     action: PropTypes.func,
     modalVisible: PropTypes.bool,
+    title: PropTypes.string,
   }
 
   render() {
@@ -30,7 +31,7 @@ class ModalPicture extends React.Component {
             
             <div className={styles.modalWrapper}>
               <div className={styles.modalTitle}>
-                <h2 className={styles.modalTitleText}>TITLE</h2>
+                <h2 className={styles.modalTitleText}>{this.props.title}</h2>
               </div>
               <div className={styles.modalPictureWrapper}>              
                 <img className={styles.modalPicture} src={this.props.picture} alt='YOUR IMAGE'></img>

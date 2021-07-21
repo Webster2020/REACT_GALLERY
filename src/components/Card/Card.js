@@ -62,7 +62,12 @@ class Card extends React.Component {
             </div>
           </div>
         </a>
-        <ModalPicture picture={this.props.content.cardData.elemUrl} modalVisible={this.state.modalVisible} action={() => this.handleCloseModal()}/>
+        <ModalPicture 
+          picture={this.props.content.cardData.elemUrl} 
+          modalVisible={this.state.modalVisible}
+          title={this.props.content.cardData.elemTitle} 
+          action={() => this.handleCloseModal()}
+        />
       </div>
 
     );

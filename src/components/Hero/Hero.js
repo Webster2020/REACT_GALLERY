@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './AppHeader.scss';
+import styles from './Hero.scss';
 import Title from '../Title/Title.js';
 
-class AppHeader extends React.Component {
+class Hero extends React.Component {
   static propTypes = {
     background: PropTypes.string,
     title: PropTypes.string,
@@ -12,19 +12,19 @@ class AppHeader extends React.Component {
 
   render() {
     console.log('===============================');
-    console.log('>> RENDER APP HEADER ... ');
-    console.log('All /AppHeader/ props: ');
+    console.log('>> RENDER APP HERO ... ');
+    console.log('All /Hero/ props: ');
     console.log(this.props);
     return (
-      <div className={styles.appHeaderContainer}>
-        <img className={styles.appHeaderImg} src={this.props.background} />
+      <div className={styles.heroContainer}>
+        <img className={styles.heroImg} src={this.props.background} />
         <Title title={this.props.title} subtitle={this.props.subtitle} />
       </div>
     );  
   }
 }
 
-export default AppHeader;
+export default Hero;
 
 /*
 == INFO: ==

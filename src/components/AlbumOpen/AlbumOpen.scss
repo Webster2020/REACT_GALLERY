@@ -1,0 +1,17 @@
+@import '../../styles/settings.scss';
+
+.albumOpenContainer {
+  display: block;
+  position: relative;
+  margin: 100px auto 0;
+  padding: 10px 0;
+  height: 365px;
+  width: 400px;
+  text-align: center; 
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: dodgerblue;
+  box-shadow: 0 8px 6px -6px $color-black;
+  border: 2px solid dodgerblue;
+  transition: $transition;
+}

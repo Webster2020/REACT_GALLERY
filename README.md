@@ -116,3 +116,30 @@ import store from ./redux/store;
 ReactDOM.render(<Provider store={store}><App /><Provider>, document.getElementById('app'));
 ```
 6. npm install -S shortid
+
+## >>>>>>>>>>>>>>>>
+## -- ADD ROUTER: --
+
+- **REACT ROUTER**
+1. npm install -S react-router-dom@5.0.0
+2. add in webpack.config.js:
+- in obj. 'output', above 'scripts_bundle.js':
+```
+publicPath: '/',
+```
+(*this setting show main place to assets collect by application*)
+- under 'output' obj.:
+```
+devServer: {
+  historyApiFallback: true,
+},
+```
+
+- **REACT ROUTER TRANSITION**
+1. npm install -S react-router-transition@1.4.0
+2. to 'App' component add:
+ ```
+import {AnimatedSwitch} from 'react-router-transition';
+},
+```
+3. change name of 'Switch' component to 'AnimatedSwitch' and add animation parameters

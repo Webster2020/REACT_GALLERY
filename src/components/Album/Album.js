@@ -36,6 +36,10 @@ class Album extends React.Component {
     alert('CLICK');
   }
 
+  handleShowAlbum() {
+    alert('SHOW ALBUM');
+  }
+
   render() {
     console.log('===============================');
     console.log('>> RENDER ALBUM ... ');
@@ -76,7 +80,10 @@ class Album extends React.Component {
             </div> 
           </div>
           
-          <Destructor action={() => this.handleRemove()}/>
+          <div className={styles.ablumButtonWrapper}>
+            <Destructor buttonName='OPEN ALBUM' action={() => this.handleShowAlbum()}/>          
+            <Destructor buttonName='REMOVE' action={() => this.handleRemove()}/>
+          </div>
           
         </div>
       </div>

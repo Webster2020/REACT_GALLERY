@@ -7,6 +7,7 @@ class Destructor extends React.Component {
   static propTypes = {
     action: PropTypes.func,
     currentCard: PropTypes.string,
+    buttonName: PropTypes.string,
   }
 
   render() {
@@ -19,12 +20,9 @@ class Destructor extends React.Component {
     console.log('/Destructor/ state: ');
     console.log(this.state);
     return (
-      <div>
-        {/*BUTTON RENDERED INSIDE OF DESTRUCTOR*/}
-        <div className={styles.buttonContainer}>
-          <button className={styles.buttonApply} onClick={() => this.props.action()}>REMOVE</button>
-        </div> 
-      </div>
+      <div className={styles.buttonContainer}>
+        <button className={styles.buttonApply} onClick={() => this.props.action()}>{this.props.buttonName}</button>
+      </div> 
     );
   }
 }

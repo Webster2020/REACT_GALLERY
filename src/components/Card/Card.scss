@@ -9,8 +9,19 @@
     cursor: pointer;
   }
   &:active {
-    border: 3px dotted $color-cards;
-    border-radius: 15px;
+    &:after {
+      content: '';
+      position: absolute;
+      top: -345px;
+      left: 10px;
+      height: 375px;
+      width: 270px;
+      background-color:silver;
+      opacity: 0.1;
+      border-radius: 15px;
+      box-shadow: $color-black 1px 10px 20px -1px;
+      z-index: -1;
+    }
   }
 }
 
@@ -74,7 +85,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  object-fit: fill;
+  object-fit: cover;
   opacity: 0.9;
   transition: 0.7s;
 }
