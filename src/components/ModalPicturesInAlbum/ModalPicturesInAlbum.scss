@@ -1,0 +1,26 @@
+@import '../../styles/settings.scss';
+
+.pictureButton {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  height: 500px;
+  overflow: hidden;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+  transition-delay: 0.2s;
+  &:hover {
+    transform: scale(1.5);
+    transition: 0.5s;
+    transition-delay: 0.2s;
+  }
+}
+

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styles from './Album.scss';
 import Destructor from '../Destructor/Destructor';
 import CardInAlbum from '../CardInAlbum/CardInAlbum';
-import {Link} from 'react-router-dom';
+import ModalAlbum from '../ModalAlbum/ModalAlbum';
+//import {Link} from 'react-router-dom';
 
 // {/* <Link to={`/albumopen/${id}`} className={styles.link}></Link> */}
 
@@ -18,6 +19,7 @@ class Album extends React.Component {
 
   state = {
     imgPosition: 5,
+    modalVisible: false,
   }
 
   handleRemove() {
@@ -35,12 +37,22 @@ class Album extends React.Component {
     this.setState(prevState => ({imgPosition: prevState.imgPosition - 110}));
   }
 
-  showAlert() {
-    alert('CLICK');
+  handleShowModal() {
+    console.log('>> Run /handleShowModal/ from /Album/');
+    this.setState({
+      modalVisible: true,
+    });
   }
 
-  handleShowAlbum() {
-    alert('SHOW ALBUM');
+  handleCloseModal() {
+    console.log('>> Run /handleCloseModal/ from /Album/');
+    this.setState({
+      modalVisible: false,
+    });
+  }
+
+  showAlert() {
+    alert('CLICK');
   }
 
   render() {
@@ -53,7 +65,8 @@ class Album extends React.Component {
     console.log('/Album/ state: ');
     console.log(this.state);
     return (
-      <Link to={`/album/${this.props.content.albumData.elemTitle}`} className={styles.link}>
+      // <Link to={`/album/${this.props.content.albumData.elemTitle}`} className={styles.link} onClick={() => this.handleHistory()}>
+      <div>
         <div className={styles.albumListElement}>
           <div className={styles.albumContainer}>
             <div className={styles.albumHeader}>
@@ -85,13 +98,22 @@ class Album extends React.Component {
             </div>
             
             <div className={styles.ablumButtonWrapper}>
-              <Destructor buttonName='OPEN ALBUM' action={() => this.handleShowAlbum()}/>          
+              <Destructor buttonName='OPEN ALBUM' action={() => this.handleShowModal()}/>          
               <Destructor buttonName='REMOVE' action={() => this.handleRemove()}/>
             </div>
             
           </div>
         </div>
-      </Link>
+
+        <ModalAlbum 
+          modalVisible={this.state.modalVisible}
+          action={() => this.handleCloseModal()}
+          cards={this.props.cards}
+          albumTitle={this.props.content.albumData.elemTitle}
+        />
+
+      </div>
+      // </Link>
     );
   }
 }

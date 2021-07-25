@@ -57,17 +57,19 @@ class Card extends React.Component {
               <h4 className={styles.cardText}>{new Date().toLocaleDateString()}</h4>
               
               {/*BUTTON RENDERED INSIDE OF DESTRUCTOR*/}
-              <Destructor action={() => this.handleRemove()}/>
+              <Destructor buttonName='REMOVE' action={() => this.handleRemove()}/>
               
             </div>
           </div>
         </a>
+
         <ModalPicture 
           picture={this.props.content.cardData.elemUrl} 
           modalVisible={this.state.modalVisible}
           title={this.props.content.cardData.elemTitle} 
           action={() => this.handleCloseModal()}
         />
+        
       </div>
 
     );

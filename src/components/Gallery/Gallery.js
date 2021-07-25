@@ -44,6 +44,7 @@ class Gallery extends React.Component {
         },
       }
     ));
+    localStorage.setItem('dupa', 'dupa');
   }
 
   //METHOD: remove 'cardData' from array 'cards' (changes state)

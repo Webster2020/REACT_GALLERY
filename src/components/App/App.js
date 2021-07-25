@@ -1,20 +1,35 @@
 import React from 'react';
 import Home from '../Home/Home.js';
-import AlbumOpen from '../AlbumOpen/AlbumOpen';
+// import AlbumOpen from '../AlbumOpen/AlbumOpen';
 // import Faq from '../Faq/Faq';
 // import MainLayout from '../MainLayout/MainLayout';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+// import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 const App = () => (
-
-  <BrowserRouter>
-    <Switch>
-      <Route exact path='/' component={Home} />
-      <Route exact path='/album/:id' component={AlbumOpen} />
-      {/* <Route exact path='/faq' component={} /> */}
-    </Switch>
-  </BrowserRouter>
   
+  <Home />
+
+  // <BrowserRouter>
+  //   <Switch>
+  //     {/* <Route exact path='/' component={Home}/> */}
+  //     <Route 
+  //       exact path='/' 
+  //       render={() => (
+  //         <Home title={'dupa dupa dupa !'} />
+  //       )}
+  //     />
+  //     <Route exact path='/album/:id' component={AlbumOpen} />
+  //     {/* <Route exact path='/faq' component={} /> */}
+  //   </Switch>
+  // </BrowserRouter>
+  
+  // <Route
+  //   path='/dashboard'
+  //   render={(props) => (
+  //     <Dashboard {...props} isAuthed={true} />
+  //   )}
+  // />
+
   // <BrowserRouter>
   //   <MainLayout>
   //     <AnimatedSwitch

@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './Header.scss';
 import {Link} from 'react-router-dom';
 
+//COMPONENT NOT USED - TO REMOVE PROBABLY
+
 class Header extends React.Component {
 
   render() {
