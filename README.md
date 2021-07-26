@@ -3,7 +3,8 @@
 REACT GALLERY is SPA (single-page application) to adding photos as postards and collecting for albums. It allows to add title of postcard, date, URL adress to source of image. It allows to chose album, to which postcard will added. Every postcard has 'remove' method. Every created album has 'remove' and 'open album' methods. I created this aplication to train my skills in REACT and to create something usefull. This project was prepared with React.js library. Project is divided into components with scss styling files and JS files.
 
 ## How it works
-![](REACT_GALLERY.gif)
+![](REACT_GALLERY_1.gif)
+![](REACT_GALLERY_2.gif)
 
 ## Link
 https://webster2020.github.io/REACT_GALLERY/
