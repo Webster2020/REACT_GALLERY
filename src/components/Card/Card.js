@@ -9,6 +9,7 @@ class Card extends React.Component {
   static propTypes = {
     content: PropTypes.object,
     allCards: PropTypes.array,
+    albumList: PropTypes.array,
     action: PropTypes.func,
   }
   
@@ -36,7 +37,7 @@ class Card extends React.Component {
       modalVisible: false,
     });
   }
-  
+
   render() {
     console.log('===============================');
     console.log('>> RENDER CARD ... ');
@@ -55,10 +56,9 @@ class Card extends React.Component {
                 <img className={styles.cardImg} src={this.props.content.cardData.elemUrl} alt='YOUR IMAGE'></img>
               </div>
               <h4 className={styles.cardText}>{new Date().toLocaleDateString()}</h4>
-              
-              {/*BUTTON RENDERED INSIDE OF DESTRUCTOR*/}
+
               <Destructor buttonName='REMOVE' action={() => this.handleRemove()}/>
-              
+
             </div>
           </div>
         </a>

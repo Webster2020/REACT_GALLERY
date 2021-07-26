@@ -39,7 +39,6 @@ class ModalAlbum extends React.Component {
             <div className={styles.modalWrapper}>
               <div className={styles.modalPictureWrapper}>              
                 {this.props.cards[this.props.albumTitle] !== [] ?
-                  //console.log(this.props.cards)
                   (this.props.cards[this.props.albumTitle].map((el, index) => 
                     el.album == this.props.albumTitle ?
                       (
@@ -62,5 +61,3 @@ class ModalAlbum extends React.Component {
 }
 
 export default ModalAlbum;
-
-//https://brainhubeu.github.io/react-carousel/docs/gettingStarted

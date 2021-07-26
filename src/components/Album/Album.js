@@ -13,7 +13,7 @@ class Album extends React.Component {
   static propTypes = {
     content: PropTypes.any,
     allAlbums: PropTypes.array,
-    cards: PropTypes.object,
+    cardsInAlbum: PropTypes.object,
     action: PropTypes.func,
   }
 
@@ -25,8 +25,11 @@ class Album extends React.Component {
   handleRemove() {
     console.log('>> Run /handleRemove/ from /Album/');
     console.log('this.props.content: ' + this.props.content);
+    console.log(this.props.content);
+    console.log('this.props.cardsInAlbum: ' + this.props.cardsInAlbum);
+    console.log(this.props.cardsInAlbum);
     console.log('...removing...');
-    this.props.action(this.props.content);
+    this.props.action(this.props.content, this.props.cardsInAlbum);
   }
   
   handleRollerUp() {
@@ -83,7 +86,7 @@ class Album extends React.Component {
             <div className={styles.albumImgWrapper}>
               <div className={styles.albumImg} style={{top: `${this.state.imgPosition}px`}}>
                 {/*album in Card is the same elemTitle in Album*/}
-                {this.props.cards[this.props.content.albumData.elemTitle].map((el, index) => 
+                {this.props.cardsInAlbum[this.props.content.albumData.elemTitle].map((el, index) => 
                   el.album == this.props.content.albumData.elemTitle ?
                     (
                       <CardInAlbum
@@ -108,7 +111,7 @@ class Album extends React.Component {
         <ModalAlbum 
           modalVisible={this.state.modalVisible}
           action={() => this.handleCloseModal()}
-          cards={this.props.cards}
+          cards={this.props.cardsInAlbum}
           albumTitle={this.props.content.albumData.elemTitle}
         />
 

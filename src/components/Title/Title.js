@@ -23,13 +23,3 @@ class Title extends React.Component {
 }
 
 export default Title;
-
-/*
-== INFO: ==
-- <Title> is 'class component' so every props which it gets from 'parent' are 'this.props.(...)';
-- contents of <h1>, <h4> are setted from [<AppHeader> props 'title', 'subtitle']; 
-- <Title> pass on any props, it only renders content;
-
-== TODO: ==
-- <Title> is 'class component' but has very simple structure so it would be changed to 'function  component' at this moment;
-*/

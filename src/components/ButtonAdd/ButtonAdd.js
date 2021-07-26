@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import styles from './Creator.scss';
 import styles from '../ButtonAdd/ButtonAdd.scss';
 
 class ButtonAdd extends React.Component {
@@ -27,13 +26,3 @@ class ButtonAdd extends React.Component {
 }
 
 export default ButtonAdd;
-
-/*
-== INFO: ==
-- <ButtonAdd> is 'class component' so every props which it gets from 'parent' are 'this.props.(...)';
-- <ButtonAdd> gets prop 'action' (which is method) from <Creator> (where is nested method from <Gallery>); 
-- <ButtonAdd> pass on its prop 'action' to [<button> as prop 'onClick'];
-
-== TODO: ==
-- <ButtonAdd> is 'class component' but has very simple structure so it would be changed to 'function  component' at this moment;
-*/

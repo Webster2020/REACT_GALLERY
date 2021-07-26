@@ -1,5 +1,4 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
 import styles from './Gallery.scss';
 import {dataStore} from '../../data/dataStore';
 import Card from '../Card/Card';
@@ -7,8 +6,6 @@ import Creator from '../Creator/Creator';
 import Album from '../Album/Album';
 
 class Gallery extends React.Component {
-
-  // NO PROPS FROM APP
 
   state = {
     cards: [],
@@ -21,12 +18,10 @@ class Gallery extends React.Component {
     albumPosition: 0,   
   }
 
-  //METHOD: add new 'cardData' to array 'cards' (changes state)
   addCard(cardData) {
     console.log('>> Run /addCard/ from /Gallery/');
     console.log('cardData: ' + cardData);
     this.setState(prevState => (
-      //prevState.temps.push(tempData)
       {
         cards: [
           ...prevState.cards,
@@ -39,15 +34,13 @@ class Gallery extends React.Component {
           ...prevState.cardsInAlbum,
           [cardData.album]: [
             ...prevState.cardsInAlbum[cardData.album],
-            cardData, //think how to add here cardId 03.07.2021
+            cardData,
           ],
         },
       }
     ));
-    localStorage.setItem('dupa', 'dupa');
   }
 
-  //METHOD: remove 'cardData' from array 'cards' (changes state)
   remCard(cardData) {
     console.log('>> Run /remCard/ from /Gallery/');
     console.log('cardData: ');
@@ -61,8 +54,6 @@ class Gallery extends React.Component {
     ));
   }
 
-  //NEW METHODS 21.06.2021
-  //METHOD: add new 'albumData' to array 'albums' (changes state)
   addAlbum(albumData) {
     console.log('>> Run /addAlbum/ from /Gallery/');
     console.log('albumData: ' + albumData);
@@ -83,13 +74,31 @@ class Gallery extends React.Component {
     ));
   }
   
-  //METHOD: remove 'albumData' from array 'albums' (changes state)
-  remAlbum(albumData) {
+  remAlbum(albumData, cardsInAlbum) {
     console.log('>> Run /remAlbum/ from /Gallery/');
-    console.log('albumData: ' + albumData);
+    console.log('albumData: ');
+    console.log(albumData);
+    console.log(albumData.albumData.elemTitle);
+    console.log('cardsInAlbum: ');
+    console.log(cardsInAlbum);
+    cardsInAlbum[albumData.albumData.elemTitle].forEach(el => console.log(el.elemTitle));
+    console.log('cards: ');
+    console.log(this.state.cards);
     this.setState(prevState => (
       prevState.albums.splice(prevState.albums.indexOf(albumData), 1)
     ));
+    this.setState(prevState => (
+      prevState.cardsInAlbum[albumData.albumData.elemTitle] = []
+    ));
+    cardsInAlbum[albumData.albumData.elemTitle].forEach(elAlbum => {
+      this.state.cards.forEach(elCard => {
+        if (elAlbum.elemTitle === elCard.cardData.elemTitle) {
+          this.setState(prevState => (
+            prevState.cards.splice(prevState.cards.indexOf(elCard), 1)
+          ));
+        }
+      });
+    });
   }
 
   handleRollerCardLeft() {
@@ -119,13 +128,8 @@ class Gallery extends React.Component {
 
       <div className={styles.galleryContainer}>
 
-        <h2 className={styles.galleryTitle}>GALLERY</h2>
-
-        ADD POSTCARD
+        <h2 className={styles.galleryTitle}>ADD POSTCARD</h2>
         <Creator type='card' action={(cardData) => this.addCard(cardData)} albumsList={this.state.albums}/>
-        
-        ADD ALBUM
-        <Creator type='album' action={(albumData) => this.addAlbum(albumData)} albumsList={this.state.albums}/>
 
         <div className={styles.galleryContainerInner}>
 
@@ -146,9 +150,9 @@ class Gallery extends React.Component {
                 <Card
                   key={`postcard-${el.cardId}`} 
                   content={el} 
-                  allCards={this.state.cards} 
-                  action={(cardData) => this.remCard(cardData) 
-                  }
+                  allCards={this.state.cards}
+                  albumsList={this.state.albums} 
+                  action={(cardData) => this.remCard(cardData)}             
                 />
               )}
 
@@ -163,7 +167,10 @@ class Gallery extends React.Component {
           </button>
           
         </div> 
-        
+           
+        <h2 className={styles.galleryTitle}>ADD ALBUM</h2>
+        <Creator type='album' action={(albumData) => this.addAlbum(albumData)} albumsList={this.state.albums}/>
+
         <div className={styles.galleryContainerInner}>
           
           <button 
@@ -185,8 +192,8 @@ class Gallery extends React.Component {
                     key={`album-${el.albumId}`} 
                     content={el} 
                     allAlbums={this.state.albums}
-                    cards={this.state.cardsInAlbum}
-                    action={(albumData) => this.remAlbum(albumData)} 
+                    cardsInAlbum={this.state.cardsInAlbum}
+                    action={(albumData, cardsInAlbum) => this.remAlbum(albumData, cardsInAlbum)} 
                   />
                 );
               })}  
@@ -209,27 +216,3 @@ class Gallery extends React.Component {
 }
 
 export default Gallery;
-
-/*
-== INFO: ==
-- <Gallery> is 'class component' so every props which it gets from 'parent' are 'this.props.(...)';
-- <Gallery> gets any props from 'parent'; 
-- <Gallery> has own 'state.temps: []' and 'state.cards: []'; 
-- <Gallery> has methods: 'addTemp(tempContent)', 'remTemp(tempContent)'; 
-- <Gallery> pass on its method 'addTemp' to [<Creator> as props 'action'];
-- <Gallery> pass on its state 'temps' to [<Temp> as props 'key', 'content', 'allTemps'];
-- <Gallery> pass on its method 'remTemp' to [<Temp> as prop 'action'];
-
-== TODO: ==
-
-  -album musi miec id (uzyc np jakiego countera), card podczas tworzenia musi sprawdzac czy id cardAlbum i id album jest takie samo
-  -dodac do creatora input dropdown (ale wyswietlany tylko dla creatora cart ale dra kreatora albumu juz nie !! - przemyslec jak to zrobic) do wybierania albumu podczas dodawania karty, carta musi dostawac albumId takie samo jak ma album (powiazanie jednego z drugim)
-  -input ten musi aktualizowac sie przy kazdym dodaniu nowego albumu
-  -carta bedzie renderowala sie w sekcji 'ostatnio dodane' oraz wewnatrz danego albumu, do ktorego zostala dodana
-  -po wcisnieciu na dany album musi otwierac sie nowa strona (uzyc react-router) z cartami nalezacymi do tego albumu
-  -bedzie trzeba dodac jakis header z linkiem do strony glownej
-  -uzyc caruseli z bootstrapa dla przewijania zdjec na podgladzie albumu
-  -uzyc caruseli reacta (link gdzies w kodzie do npm'a) do przewijania albumów na stronie głownej oraz cart po wejsciu w dany album
-  -pomyslec jak dodac mozliwosc dodawania plikow ze zdjeicem oprócz linku url
-
-*/

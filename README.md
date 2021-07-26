@@ -143,3 +143,8 @@ import {AnimatedSwitch} from 'react-router-transition';
 },
 ```
 3. change name of 'Switch' component to 'AnimatedSwitch' and add animation parameters
+
+
+## -- TODO: --
+ - adding card to album (after created card)
+ - only one card and ablum can has unique name (without repeat)

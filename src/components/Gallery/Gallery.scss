@@ -72,3 +72,9 @@
   }
 }
 
+.statsWrapper {
+  display: flex;
+  .stats {
+    display: inline-block;
+  }
+}

@@ -6,7 +6,6 @@ class Destructor extends React.Component {
     
   static propTypes = {
     action: PropTypes.func,
-    currentCard: PropTypes.string,
     buttonName: PropTypes.string,
   }
 
