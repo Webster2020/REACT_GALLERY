@@ -30,7 +30,7 @@
       transition: $transition;
       opacity: 1;
     }
-  } 
+  }
 }
 
 .cardText {
@@ -59,4 +59,8 @@
   object-fit: fill;
   opacity: 0.9;
   transition: $transition;
+}
+
+.cardContainerFocus {
+  transform: scale(1.5);
 }

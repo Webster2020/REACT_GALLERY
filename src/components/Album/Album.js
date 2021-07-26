@@ -4,9 +4,6 @@ import styles from './Album.scss';
 import Destructor from '../Destructor/Destructor';
 import CardInAlbum from '../CardInAlbum/CardInAlbum';
 import ModalAlbum from '../ModalAlbum/ModalAlbum';
-//import {Link} from 'react-router-dom';
-
-// {/* <Link to={`/albumopen/${id}`} className={styles.link}></Link> */}
 
 class Album extends React.Component {
   
@@ -54,10 +51,6 @@ class Album extends React.Component {
     });
   }
 
-  showAlert() {
-    alert('CLICK');
-  }
-
   render() {
     console.log('===============================');
     console.log('>> RENDER ALBUM ... ');
@@ -68,7 +61,6 @@ class Album extends React.Component {
     console.log('/Album/ state: ');
     console.log(this.state);
     return (
-      // <Link to={`/album/${this.props.content.albumData.elemTitle}`} className={styles.link} onClick={() => this.handleHistory()}>
       <div>
         <div className={styles.albumListElement}>
           <div className={styles.albumContainer}>
@@ -85,14 +77,12 @@ class Album extends React.Component {
             </div>
             <div className={styles.albumImgWrapper}>
               <div className={styles.albumImg} style={{top: `${this.state.imgPosition}px`}}>
-                {/*album in Card is the same elemTitle in Album*/}
                 {this.props.cardsInAlbum[this.props.content.albumData.elemTitle].map((el, index) => 
                   el.album == this.props.content.albumData.elemTitle ?
                     (
                       <CardInAlbum
                         key={`postcardInAlbum-${index}`} 
                         content={el}
-                        action={() => this.showAlert()}
                       />
                     ) 
                     : ''             
@@ -116,12 +106,8 @@ class Album extends React.Component {
         />
 
       </div>
-      // </Link>
     );
   }
 }
 
 export default Album;
-
-// super carousel to react!!
-// https://www.npmjs.com/package/react-multi-carousel
