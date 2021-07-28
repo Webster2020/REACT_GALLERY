@@ -55,7 +55,7 @@ Project is not diveded on component in accordance with the React convention.
 
 Project was prepared based on my own idea and using my current knowledge and skills.
 
-## Plan for future dvelopment
+## Plan for future development
 
  - Refactor code - switch some class components to functional components (with hooks)
  - Ensure each card and each ablum has unique name (block the possibility of repetitions)
