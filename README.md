@@ -7,7 +7,7 @@ REACT GALLERY is SPA (single-page application) to adding photos as postards and 
 ![](REACT_GALLERY_2.gif)
 
 ## Link
-https://webster2020.github.io/REACT_GALLERY/
+https://webster2020-react-gallery.herokuapp.com/
 
 ## How to start:
 
